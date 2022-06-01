@@ -32,7 +32,7 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
         }),
         email: new FormControl<string>(registration?.user.email || '', {
           validators: [ Validators.required, Validators.email ],
-          asyncValidators: [],
+          asyncValidators: [ ValidatorExtensions.emailUnused() ],
           nonNullable: true
         }),
         age: new FormControl<number>(registration?.user.age || 0, {

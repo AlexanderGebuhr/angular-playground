@@ -13,12 +13,6 @@ export class ValidatorExtensions {
     };
   }
 
-  static emailUnused(): AsyncValidatorFn {
-    return (control: AbstractControl<string>) => {
-      return of(null);
-    };
-  }
-
   static password(minLength: number): ValidatorFn {
     const minLengthValidator = Validators.minLength(minLength);
     return (control: AbstractControl<string>) => {
@@ -27,6 +21,12 @@ export class ValidatorExtensions {
         return minLengthErrors;
       }
       return null;
+    };
+  }
+
+  static emailUnused(): AsyncValidatorFn {
+    return (control: AbstractControl<string>) => {
+      return of(null);
     };
   }
 }
