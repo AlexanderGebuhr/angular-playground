@@ -1,4 +1,5 @@
-import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Control } from "../shared/control";
 
 export interface Login {
   username: string;
@@ -6,7 +7,7 @@ export interface Login {
   rememberMe: boolean;
 }
 
-export type LoginControls = { [Key in keyof Login]: AbstractControl<Login[Key]> };
+export type LoginControls = { [Key in keyof Login]: Control<Login[Key]> };
 
 export class LoginForm extends FormGroup<LoginControls> {
   constructor(login?: Login) {

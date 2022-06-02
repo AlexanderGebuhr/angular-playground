@@ -1,11 +1,12 @@
-import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ValidatorExtensions } from "../validators";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ValidatorExtensions } from "../shared/validators";
+import { Control } from "../shared/control";
 
 export interface RegistrationUser {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  age?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
 }
 
 export interface Registration {
@@ -14,9 +15,9 @@ export interface Registration {
   passwordConfirm: string;
 }
 
-export type RegistrationUserControls = { [Key in keyof RegistrationUser]: AbstractControl<RegistrationUser[Key]> };
+export type RegistrationUserControls = { [Key in keyof RegistrationUser]: Control<RegistrationUser[Key]> };
 
-export type RegistrationControls = { [Key in keyof Registration]: AbstractControl<Registration[Key]> };
+export type RegistrationControls = { [Key in keyof Registration]: Control<Registration[Key]> };
 
 export class RegistrationForm extends FormGroup<RegistrationControls> {
   constructor(registration?: Registration) {
@@ -51,13 +52,5 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
     }, {
       validators: [ ValidatorExtensions.equal<Registration>("password", "passwordConfirm") ]
     })
-  }
-
-  get currentValue(): Partial<Registration> {
-    return this.value;
-  }
-
-  get currentRawValue(): Registration {
-    return this.getRawValue();
   }
 }

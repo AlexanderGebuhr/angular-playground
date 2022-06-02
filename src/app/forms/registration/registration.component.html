@@ -1,0 +1,28 @@
+<div class="content">
+  <form>
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput type="email" [formControl]="registrationForm.controls.user.controls.firstName" placeholder="Enter your first name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput type="email" [formControl]="registrationForm.controls.user.controls.lastName" placeholder="Enter your last name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [formControl]="registrationForm.controls.user.controls.email" placeholder="Enter your email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input matInput type="number" [formControl]="registrationForm.controls.user.controls.age" placeholder="Enter your age">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [formControl]="registrationForm.controls.password" placeholder="Enter your password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password confirm</mat-label>
+      <input matInput type="password" [formControl]="registrationForm.controls.password" placeholder="Confirm your password">
+    </mat-form-field>
+  </form>
+</div>

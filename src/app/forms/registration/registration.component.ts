@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
+import { RegistrationForm } from "./registration";
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: [ './registration.component.scss']
 })
-export class RegistrationComponent {}
+export class RegistrationComponent {
+  readonly registrationForm = new RegistrationForm();
+}

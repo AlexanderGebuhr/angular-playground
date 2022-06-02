@@ -1,0 +1,14 @@
+<div class="content">
+  <form>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" [formControl]="loginForm.controls.username" placeholder="Enter your username">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [formControl]="loginForm.controls.password" placeholder="Enter your password">
+    </mat-form-field>
+    <mat-checkbox [formControl]="loginForm.controls.rememberMe">Remember me</mat-checkbox>
+  </form>
+</div>
+

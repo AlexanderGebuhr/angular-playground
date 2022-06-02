@@ -33,6 +33,10 @@ p {
   font-weight: 600;
 }
 
+.toolbar a > span {
+  color: white;
+}
+
 .toolbar img {
   margin: 0 16px;
 }
@@ -52,9 +56,12 @@ p {
   opacity: 0.8;
 }
 
+.main {
+  margin: 82px auto 32px;
+}
+
 .content {
   display: flex;
-  margin: 82px auto 32px;
   padding: 0 16px;
   max-width: 960px;
   flex-direction: column;
