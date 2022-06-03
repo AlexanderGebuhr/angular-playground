@@ -7,5 +7,9 @@ import { RegistrationForm } from "./registration";
   styleUrls: [ './registration.component.scss']
 })
 export class RegistrationComponent {
-  readonly registrationForm = new RegistrationForm();
+  readonly form = new RegistrationForm();
+
+  submit(): void {
+    console.log('submit', this.form.value);
+  }
 }

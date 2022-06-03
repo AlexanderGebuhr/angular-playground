@@ -7,5 +7,9 @@ import { LoginForm } from "./login";
   styleUrls: [ './login.component.scss']
 })
 export class LoginComponent {
-  readonly loginForm = new LoginForm();
+  readonly form = new LoginForm();
+
+  submit(): void {
+    console.log('submit', this.form.value);
+  }
 }

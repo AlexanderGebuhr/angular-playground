@@ -5,12 +5,12 @@ import { Control } from "../shared/control";
 export interface RegistrationUser {
   firstName: string;
   lastName: string;
-  email: string;
   age: number;
 }
 
 export interface Registration {
   user: RegistrationUser;
+  username: string;
   password: string;
   passwordConfirm: string;
 }
@@ -31,26 +31,36 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
           validators: [ Validators.required ],
           nonNullable: true
         }),
-        email: new FormControl<string>(registration?.user.email || '', {
-          validators: [ Validators.required, Validators.email ],
-          asyncValidators: [ ValidatorExtensions.emailUnused() ],
-          nonNullable: true
-        }),
         age: new FormControl<number>(registration?.user.age || 0, {
           validators: [ Validators.required, Validators.min(18) ],
           nonNullable: true,
         })
       }),
+      username: new FormControl<string>(registration?.username || '', {
+        validators: [ Validators.required, Validators.email ],
+        asyncValidators: [ ValidatorExtensions.usernameUnique ],
+        nonNullable: true
+      }),
       password: new FormControl<string>(registration?.password || '', {
-        validators: [ Validators.required, ValidatorExtensions.password(10) ],
+        validators: [ Validators.required, Validators.minLength(10) ],
         nonNullable: true
       }),
       passwordConfirm: new FormControl<string>(registration?.passwordConfirm || '', {
-        validators: [ Validators.required ],
+        validators: [ Validators.required, Validators.minLength(10) ],
         nonNullable: true
       })
     }, {
-      validators: [ ValidatorExtensions.equal<Registration>("password", "passwordConfirm") ]
+      validators: [
+        ValidatorExtensions.equal<Registration>(
+          { key: "password", name: "password" },
+          { key: "passwordConfirm", name: "confirm password" }
+        )
+      ]
     })
+  }
+
+  validate(): void {
+    this.markAllAsTouched();
+    this.updateValueAndValidity();
   }
 }

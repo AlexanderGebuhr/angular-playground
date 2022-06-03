@@ -1,32 +1,23 @@
-import { AbstractControl, AsyncValidatorFn, ValidatorFn, Validators } from "@angular/forms";
-import { of } from "rxjs";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { delay, Observable, of } from "rxjs";
 
 export class ValidatorExtensions {
-  static equal<TValue extends { [key: string ]: any }>(key1: keyof TValue, key2: keyof TValue): ValidatorFn {
+  private static usernamesTaken = [ 'user@mail.com', 'user01@mail.com', 'user02@mail.com', 'user03@mail.com' ];
+
+  static equal<TValue extends { [key: string ]: any }>(p1: { key: keyof TValue, name: string }, p2: { key: keyof TValue, name: string }): ValidatorFn {
     return (control: AbstractControl<TValue>) => {
-      const value1 = control.value?.[key1];
-      const value2 = control.value?.[key2];
+      const value1 = control.value?.[p1.key];
+      const value2 = control.value?.[p2.key];
       if (value1 !== value2) {
-        return { equal: true }
+      const key2 = p2.key;
+      return { equal: { p1, p2 } }
       }
       return null;
     };
   }
 
-  static password(minLength: number): ValidatorFn {
-    const minLengthValidator = Validators.minLength(minLength);
-    return (control: AbstractControl<string>) => {
-      const minLengthErrors = minLengthValidator(control);
-      if (minLengthErrors) {
-        return minLengthErrors;
-      }
-      return null;
-    };
-  }
-
-  static emailUnused(): AsyncValidatorFn {
-    return (control: AbstractControl<string>) => {
-      return of(null);
-    };
+  static usernameUnique(control: AbstractControl<string>): Observable<ValidationErrors | null> {
+    const error = ValidatorExtensions.usernamesTaken.includes(control.value) ? { usernameUnique: true } : null;
+    return of(error).pipe(delay(300));
   }
 }

@@ -24,11 +24,8 @@ export class LoginForm extends FormGroup<LoginControls> {
     })
   }
 
-  get currentValue(): Partial<Login> {
-    return this.value;
-  }
-
-  get currentRawValue(): Login {
-    return this.getRawValue();
+  validate(): void {
+    this.markAllAsTouched();
+    this.updateValueAndValidity();
   }
 }
