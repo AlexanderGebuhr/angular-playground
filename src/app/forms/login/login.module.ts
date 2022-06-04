@@ -17,19 +17,17 @@ import { LoginComponent } from './login.component';
     MatCheckboxModule,
     MatInputModule,
     FormPipesModule,
-    LoginRoutingModule
+    LoginRoutingModule,
   ],
-  declarations: [
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
         appearance: 'standard',
-        floatLabel: 'always'
-      }
-    }
-  ]
+        floatLabel: 'always',
+      },
+    },
+  ],
 })
 export class LoginModule {}

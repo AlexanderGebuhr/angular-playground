@@ -25,37 +25,37 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
       user: new FormGroup<RegistrationUserControls>({
         firstName: new FormControl<string>(registration?.user.firstName || '', {
           validators: [ Validators.required ],
-          nonNullable: true
+          nonNullable: true,
         }),
         lastName: new FormControl<string>(registration?.user.lastName || '', {
           validators: [ Validators.required ],
-          nonNullable: true
+          nonNullable: true,
         }),
         age: new FormControl<number>(registration?.user.age || 0, {
           validators: [ Validators.required, Validators.min(18) ],
           nonNullable: true,
-        })
+        }),
       }),
       username: new FormControl<string>(registration?.username || '', {
         validators: [ Validators.required, Validators.email ],
         asyncValidators: [ ValidatorExtensions.usernameUnique ],
-        nonNullable: true
+        nonNullable: true,
       }),
       password: new FormControl<string>(registration?.password || '', {
         validators: [ Validators.required, Validators.minLength(10) ],
-        nonNullable: true
+        nonNullable: true,
       }),
       passwordConfirm: new FormControl<string>(registration?.passwordConfirm || '', {
         validators: [ Validators.required, Validators.minLength(10) ],
-        nonNullable: true
-      })
+        nonNullable: true,
+      }),
     }, {
       validators: [
         ValidatorExtensions.equal<Registration>(
           { key: 'password', name: 'password' },
-          { key: 'passwordConfirm', name: 'confirm password' }
-        )
-      ]
+          { key: 'passwordConfirm', name: 'confirm password' },
+        ),
+      ],
     });
   }
 

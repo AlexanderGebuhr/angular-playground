@@ -93,6 +93,10 @@
             "allowSingleLine": true
           }
         ],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
         "id-blacklist": "off",
         "id-match": "off",
         "import/order": "error",

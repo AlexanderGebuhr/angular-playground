@@ -45,6 +45,6 @@ const pipes = [ ErrorMessagePipe ];
 
 @NgModule({
   declarations: pipes,
-  exports: pipes
+  exports: pipes,
 })
 export class FormPipesModule {}

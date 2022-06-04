@@ -6,7 +6,7 @@ export class ValidatorExtensions {
 
   static equal<TValue extends { [key: string ]: any }>(
     p1: { key: keyof TValue; name: string },
-    p2: { key: keyof TValue; name: string }
+    p2: { key: keyof TValue; name: string },
   ): ValidatorFn {
     return (control: AbstractControl<TValue>) => {
       const value1 = control.value?.[p1.key];

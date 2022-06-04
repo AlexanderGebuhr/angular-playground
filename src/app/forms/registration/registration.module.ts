@@ -15,19 +15,17 @@ import { RegistrationComponent } from './registration.component';
     MatButtonModule,
     MatInputModule,
     FormPipesModule,
-    RegistrationRoutingModule
+    RegistrationRoutingModule,
   ],
-  declarations: [
-    RegistrationComponent
-  ],
+  declarations: [RegistrationComponent],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
         appearance: 'standard',
-        floatLabel: 'always'
-      }
-    }
-  ]
+        floatLabel: 'always',
+      },
+    },
+  ],
 })
 export class RegistrationModule {}
