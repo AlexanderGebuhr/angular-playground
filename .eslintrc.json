@@ -111,6 +111,30 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular",
+            "printWidth": 140,
+            "tabWidth": 2,
+            "useTabs": false,
+            "semi": true,
+            "endOfLine": "auto"
+          }
+        ]
+      }
     }
   ]
 }
