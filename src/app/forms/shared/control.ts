@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup } from "@angular/forms"
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export type Control<TValue> =
   [TValue] extends [string | number | boolean | undefined]

@@ -1,6 +1,6 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ValidatorExtensions } from "../shared/validators";
-import { Control } from "../shared/control";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidatorExtensions } from '../shared/validators';
+import { Control } from '../shared/control';
 
 export interface RegistrationUser {
   firstName: string;
@@ -52,11 +52,11 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
     }, {
       validators: [
         ValidatorExtensions.equal<Registration>(
-          { key: "password", name: "password" },
-          { key: "passwordConfirm", name: "confirm password" }
+          { key: 'password', name: 'password' },
+          { key: 'passwordConfirm', name: 'confirm password' }
         )
       ]
-    })
+    });
   }
 
   validate(): void {

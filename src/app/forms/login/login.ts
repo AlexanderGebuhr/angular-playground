@@ -1,5 +1,5 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Control } from "../shared/control";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Control } from '../shared/control';
 
 export interface Login {
   username: string;
@@ -21,7 +21,7 @@ export class LoginForm extends FormGroup<LoginControls> {
         nonNullable: true
       }),
       rememberMe: new FormControl<boolean>(login?.rememberMe || false, { nonNullable: true })
-    })
+    });
   }
 
   validate(): void {
