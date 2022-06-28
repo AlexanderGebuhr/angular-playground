@@ -62,23 +62,22 @@ p {
 
 .content {
   display: flex;
-  padding: 0 16px;
+  margin: 0 auto;
+  padding: 0 16px 16px 16px;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
 }
 
-svg.material-icons {
-  height: 24px;
-  width: auto;
-}
+.card {
+  mat-icon {
+    height: 24px;
+    width: auto;
 
-svg.material-icons:not(:last-child) {
-  margin-right: 8px;
-}
-
-.card svg.material-icons path {
-  fill: #888;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 }
 
 .card-container {
