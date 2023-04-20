@@ -1,6 +1,26 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
+export const errorTemplate = (strings: TemplateStringsArray, ...keys: string[]) =>
+  (values: any) => keys.reduce((result, key, index) => {
+    const partialKeys = key.split('.');
+    const value = partialKeys.slice(1).reduce((res, k) => res[k], values[partialKeys[0]]);
+    result.push(value, strings[index + 1]);
+    return result;
+  }, [strings[0]]).join('');
+
+export const ERROR_TEMPLATES = {
+  required: errorTemplate`The ${'inputName'} is required`,
+  email: errorTemplate`The ${'inputName'} is not an email`,
+  pattern: errorTemplate`The ${'inputName'} does not fit the pattern`,
+  min: errorTemplate`The ${'inputName'} is less than ${'error.min'}`,
+  max: errorTemplate`The ${'inputName'} is greater than ${'error.max'}`,
+  minlength: errorTemplate`The ${'inputName'} must have a min length of ${'error.requiredLength'}`,
+  maxlength: errorTemplate`The ${'inputName'} must have a max length of ${'error.requiredLength'}`,
+  usernameUnique: errorTemplate`The username is already taken`,
+  equal: errorTemplate`The '${'error.p1.name'}' needs to equal the '${'error.p2.name'}`,
+};
+
 @Pipe({ name: 'errorMessage' })
 export class ErrorMessagePipe implements PipeTransform {
   transform(errors: ValidationErrors | null, fieldName?: string): string | undefined {
@@ -8,34 +28,10 @@ export class ErrorMessagePipe implements PipeTransform {
       return undefined;
     }
     const inputName = fieldName ? `'${fieldName}'` : 'input';
-    if (errors['required']) {
-      return `The ${inputName} is required`;
-    }
-    if (errors['email']) {
-      return `The ${inputName} is not an email`;
-    }
-    if (errors['pattern']) {
-      return `The ${inputName} does not fit the pattern`;
-    }
-    if (errors['min']) {
-      return `The ${inputName} is less than ${errors['min']['min']}`;
-    }
-    if (errors['max']) {
-      return `The ${inputName} is greater than ${errors['max']['max']}`;
-    }
-    if (errors['minlength']) {
-      return `The ${inputName} must have a min length of ${errors['minlength']['requiredLength']}`;
-    }
-    if (errors['maxlength']) {
-      return `The ${inputName} must have a max length of ${errors['maxlength']['requiredLength']}`;
-    }
-    if (errors['usernameUnique']) {
-      return `username is already taken`;
-    }
-    if (errors['equal']) {
-      const name1 = errors['equal']['p1']['name'];
-      const name2 = errors['equal']['p2']['name'];
-      return `The '${name1}' needs to equal the '${name2}'`;
+    const templateEntry  = Object.entries(ERROR_TEMPLATES).find(([key]) => !!errors[key]);
+    if (templateEntry) {
+      const [ key, template ] = templateEntry;
+      return template({ inputName, error: errors[key] });
     }
     return `The ${inputName} is invalid`;
   }

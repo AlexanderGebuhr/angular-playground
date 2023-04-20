@@ -22,7 +22,7 @@ import { RegistrationComponent } from './registration.component';
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
-        appearance: 'standard',
+        appearance: 'fill',
         floatLabel: 'always',
       },
     },
