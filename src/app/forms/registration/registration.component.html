@@ -3,32 +3,32 @@
     <mat-form-field>
       <mat-label>First name</mat-label>
       <input matInput type="email" placeholder="Enter your first name" [formControl]="form.controls.user.controls.firstName" />
-      <mat-error>{{ form.controls.user.controls.firstName.errors | errorMessage: 'first name' }}</mat-error>
+      <mat-error>{{ form.controls.user.controls.firstName.errors | errorMessage : "first name" }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Last name</mat-label>
       <input matInput type="email" placeholder="Enter your last name" [formControl]="form.controls.user.controls.lastName" />
-      <mat-error>{{ form.controls.user.controls.lastName.errors | errorMessage: 'last name' }}</mat-error>
+      <mat-error>{{ form.controls.user.controls.lastName.errors | errorMessage : "last name" }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Age</mat-label>
       <input matInput type="number" placeholder="Enter your age" [formControl]="form.controls.user.controls.age" />
-      <mat-error>{{ form.controls.user.controls.age.errors | errorMessage: 'age' }}</mat-error>
+      <mat-error>{{ form.controls.user.controls.age.errors | errorMessage : "age" }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Username</mat-label>
       <input matInput type="email" placeholder="Enter your email" [formControl]="form.controls.username" />
-      <mat-error>{{ form.controls.username.errors | errorMessage: 'username' }}</mat-error>
+      <mat-error>{{ form.controls.username.errors | errorMessage : "username" }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput type="password" placeholder="Enter your password" [formControl]="form.controls.password" />
-      <mat-error>{{ form.controls.password.errors | errorMessage: 'password' }}</mat-error>
+      <mat-error>{{ form.controls.password.errors | errorMessage : "password" }}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password confirm</mat-label>
       <input matInput type="password" placeholder="Confirm your password" [formControl]="form.controls.passwordConfirm" />
-      <mat-error>{{ form.controls.passwordConfirm.errors | errorMessage: 'confirm password' }}</mat-error>
+      <mat-error>{{ form.controls.passwordConfirm.errors | errorMessage : "confirm password" }}</mat-error>
     </mat-form-field>
     <div *ngIf="form.errors" class="error">{{ form.errors | errorMessage }}</div>
     <button mat-flat-button color="primary" type="submit" (click)="form.validate()">Register</button>

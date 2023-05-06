@@ -11,11 +11,7 @@ export class ValidatorExtensions {
     return (control: AbstractControl<TValue>) => {
       const value1 = control.value?.[p1.key];
       const value2 = control.value?.[p2.key];
-      if (value1 !== value2) {
-      const key2 = p2.key;
-      return { equal: { p1, p2 } };
-      }
-      return null;
+      return value1 !== value2 ? { equal: { p1, p2 } } : null;
     };
   }
 

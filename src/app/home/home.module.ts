@@ -1,11 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./home.component').then(m => m.HomeComponent),
+  },
+];
 
 @NgModule({
-  imports: [CommonModule, MatIconModule, HomeRoutingModule],
-  declarations: [HomeComponent],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class HomeModule {}

@@ -1,4 +1,4 @@
-import { NgModule, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
 export const errorTemplate = (strings: TemplateStringsArray, ...keys: string[]) =>
@@ -21,7 +21,7 @@ export const ERROR_TEMPLATES = {
   equal: errorTemplate`The '${'error.p1.name'}' needs to equal the '${'error.p2.name'}`,
 };
 
-@Pipe({ name: 'errorMessage' })
+@Pipe({ standalone: true, name: 'errorMessage' })
 export class ErrorMessagePipe implements PipeTransform {
   transform(errors: ValidationErrors | null, fieldName?: string): string | undefined {
     if (!errors) {
@@ -36,11 +36,3 @@ export class ErrorMessagePipe implements PipeTransform {
     return `The ${inputName} is invalid`;
   }
 }
-
-const pipes = [ ErrorMessagePipe ];
-
-@NgModule({
-  declarations: pipes,
-  exports: pipes,
-})
-export class FormPipesModule {}
