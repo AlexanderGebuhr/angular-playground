@@ -13,11 +13,11 @@ export class LoginForm extends FormGroup<LoginControls> {
   constructor(login?: Login) {
     super({
       username: new FormControl<string>(login?.username || '', {
-        validators: [ Validators.required ],
+        validators: [Validators.required],
         nonNullable: true,
       }),
       password: new FormControl<string>(login?.password || '', {
-        validators: [ Validators.required ],
+        validators: [Validators.required],
         nonNullable: true,
       }),
       rememberMe: new FormControl<boolean>(login?.rememberMe || false, { nonNullable: true }),

@@ -1,10 +1,10 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { delay, Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 export class ValidatorExtensions {
-  private static usernamesTaken = [ 'user@mail.com', 'user01@mail.com', 'user02@mail.com', 'user03@mail.com' ];
+  private static usernamesTaken = ['user@mail.com', 'user01@mail.com', 'user02@mail.com', 'user03@mail.com'];
 
-  static equal<TValue extends { [key: string ]: any }>(
+  static equal<TValue extends Record<string, any>>(
     p1: { key: keyof TValue; name: string },
     p2: { key: keyof TValue; name: string },
   ): ValidatorFn {
