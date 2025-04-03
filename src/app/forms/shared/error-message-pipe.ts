@@ -1,13 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
-export const errorTemplate = (strings: TemplateStringsArray, ...keys: string[]) =>
-  (values: any) => keys.reduce((result, key, index) => {
-    const partialKeys = key.split('.');
-    const value = partialKeys.slice(1).reduce((res, k) => res[k], values[partialKeys[0]]);
-    result.push(value, strings[index + 1]);
-    return result;
-  }, [strings[0]]).join('');
+export const errorTemplate =
+  (strings: TemplateStringsArray, ...keys: string[]) =>
+  (values: any) =>
+    keys
+      .reduce(
+        (result, key, index) => {
+          const partialKeys = key.split('.');
+          const value = partialKeys.slice(1).reduce((res, k) => res[k], values[partialKeys[0]]);
+          result.push(value, strings[index + 1]);
+          return result;
+        },
+        [strings[0]],
+      )
+      .join('');
 
 export const ERROR_TEMPLATES = {
   required: errorTemplate`The ${'inputName'} is required`,
@@ -28,9 +35,9 @@ export class ErrorMessagePipe implements PipeTransform {
       return undefined;
     }
     const inputName = fieldName ? `'${fieldName}'` : 'input';
-    const templateEntry  = Object.entries(ERROR_TEMPLATES).find(([key]) => !!errors[key]);
+    const templateEntry = Object.entries(ERROR_TEMPLATES).find(([key]) => !!errors[key]);
     if (templateEntry) {
-      const [ key, template ] = templateEntry;
+      const [key, template] = templateEntry;
       return template({ inputName, error: errors[key] });
     }
     return `The ${inputName} is invalid`;

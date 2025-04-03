@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -7,9 +6,9 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, RouterModule, MatIconModule],
+  styleUrl: './home.component.scss',
+  imports: [RouterModule, MatIconModule],
 })
 export class HomeComponent {
-  title = 'angular-playground';
+  readonly title = 'angular-playground';
 }

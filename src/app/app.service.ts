@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { IconService } from './services/icon.service';
+import { ThemeService } from './services/theme.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppService {
-  constructor(protected iconService: IconService) {}
+  constructor(
+    protected themeService: ThemeService,
+    protected iconService: IconService,
+  ) {}
 
   init(): void {
+    this.themeService.init();
     this.iconService.register();
   }
 }
-
-export const appInitializer = (appService: AppService): () => void => () => appService.init();

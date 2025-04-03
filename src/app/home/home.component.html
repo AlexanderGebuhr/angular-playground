@@ -45,7 +45,7 @@
   <div class="card-container">
     <a class="card" rel="noopener" [routerLink]="['..', 'forms']">
       <span>Typed Reactive Forms</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
   </div>
 
@@ -55,33 +55,33 @@
 
   <div class="card-container">
     <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-      <mat-icon>school</mat-icon>
+      <mat-icon svgIcon="school" />
       <span>Learn Angular</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
 
     <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-      <mat-icon>code</mat-icon>
+      <mat-icon svgIcon="code" />
       <span>CLI Documentation</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
 
     <a class="card" target="_blank" rel="noopener" href="https://material.angular.io">
-      <mat-icon svgIcon="angular_material"></mat-icon>
+      <mat-icon svgIcon="angular_material" />
       <span>Angular Material</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
 
     <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
-      <mat-icon>whatshot</mat-icon>
+      <mat-icon svgIcon="whatshot" />
       <span>Angular Blog</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
 
     <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
-      <mat-icon>saved_search</mat-icon>
+      <mat-icon svgIcon="saved_search" />
       <span>Angular DevTools</span>
-      <mat-icon>chevron_right</mat-icon>
+      <mat-icon svgIcon="chevron_right" />
     </a>
   </div>
 
@@ -89,47 +89,61 @@
   <h2>Next Steps</h2>
   <p>What do you want to do next with your app?</p>
 
-  <input type="hidden" #selection />
+  <input #selection type="hidden" />
 
   <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'component'">
+      <mat-icon svgIcon="add" />
       <span>New Component</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'material'">
+      <mat-icon svgIcon="add" />
       <span>Angular Material</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'pwa'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'pwa'">
+      <mat-icon svgIcon="add" />
       <span>Add PWA Support</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'dependency'">
+      <mat-icon svgIcon="add" />
       <span>Add Dependency</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'test'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'test'">
+      <mat-icon svgIcon="add" />
       <span>Run and Watch Tests</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'build'" tabindex="0">
-      <mat-icon>add</mat-icon>
+    <button type="button" class="card card-small" tabindex="0" (click)="selection.value = 'build'">
+      <mat-icon svgIcon="add" />
       <span>Build for Production</span>
     </button>
   </div>
 
   <!-- Terminal -->
-  <div class="terminal" [ngSwitch]="selection.value">
-    <pre *ngSwitchDefault>ng generate component xyz</pre>
-    <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
-    <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
-    <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-    <pre *ngSwitchCase="'test'">ng test</pre>
-    <pre *ngSwitchCase="'build'">ng build</pre>
+  <div class="terminal">
+    @switch (selection.value) {
+      @case ("material") {
+        <pre>ng add &#64;angular/material</pre>
+      }
+      @case ("pwa") {
+        <pre>ng add &#64;angular/pwa</pre>
+      }
+      @case ("dependency") {
+        <pre>ng add _____</pre>
+      }
+      @case ("test") {
+        <pre>ng test</pre>
+      }
+      @case ("build") {
+        <pre>ng build</pre>
+      }
+      @default {
+        <pre>ng generate component xyz</pre>
+      }
+    }
   </div>
 </div>
