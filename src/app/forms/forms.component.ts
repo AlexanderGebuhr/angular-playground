@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrl: './forms.component.scss',
   imports: [RouterModule, MatIconModule],
 })
 export class FormsComponent {}
