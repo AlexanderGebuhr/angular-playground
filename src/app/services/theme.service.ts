@@ -9,6 +9,7 @@ import { PreferencesState } from '../state/preferences/preferences.state';
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private readonly _defaultMode: ThemeMode;
+  private _mode: ThemeMode | null = null;
 
   constructor(
     private store: Store,

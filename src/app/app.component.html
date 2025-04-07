@@ -6,9 +6,19 @@
   <button mat-icon-button type="button" [matMenuTriggerFor]="preferencesMenu">
     <mat-icon svgIcon="settings" />
   </button>
-  <mat-menu #preferencesMenu="matMenu">Test</mat-menu>
+  <mat-menu #preferencesMenu="matMenu" class="preferences-menu">
+    <mat-radio-group aria-label="Select an option" [value]="themeMode$ | async" (change)="setThemeMode($event.value)">
+      <mat-radio-button [value]="null">Default</mat-radio-button>
+      <mat-radio-button [value]="themeModes.Light">Light</mat-radio-button>
+      <mat-radio-button [value]="themeModes.Dark">Dark</mat-radio-button>
+    </mat-radio-group>
+  </mat-menu>
 </mat-toolbar>
 
-<div class="main" role="main">
-  <router-outlet />
-</div>
+<mat-sidenav-container>
+  <mat-sidenav-content class="content">
+    <mat-card class="card">
+      <router-outlet />
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

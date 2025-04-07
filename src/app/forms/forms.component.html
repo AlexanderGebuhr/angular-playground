@@ -1,13 +1,19 @@
-<div class="content">
-  <h2>Typed reactive forms</h2>
-  <div class="card-container">
-    <a class="card" rel="noopener" [routerLink]="['login']">
-      <span>Login Form</span>
-      <mat-icon svgIcon="chevron_right" />
-    </a>
-    <a class="card" rel="noopener" [routerLink]="['registration']">
-      <span>Registration Form</span>
-      <mat-icon svgIcon="chevron_right" />
-    </a>
-  </div>
+<h2>Typed reactive forms</h2>
+<div class="card-container">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Login Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-button type="button" color="primary" [routerLink]="['login']">Open</a>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Registration Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-button type="button" color="primary" [routerLink]="['registration']">Open</a>
+    </mat-card-actions>
+  </mat-card>
 </div>

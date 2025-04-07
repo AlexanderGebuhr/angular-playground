@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +8,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  imports: [RouterModule, MatIconModule],
+  styleUrl: './forms.component.scss',
+  imports: [RouterModule, MatButtonModule, MatCardModule, MatIconModule],
 })
 export class FormsComponent {}
