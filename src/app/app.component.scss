@@ -1,7 +1,25 @@
 :host {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+
   .toolbar {
+    color: var(--app-primary-color);
+    background: var(--app-primary-background);
+
     .toolbar-spacer {
       flex: 1 1 auto;
+    }
+  }
+
+  .content {
+    min-height: calc(100vh - 64px);
+
+    .card {
+      min-height: calc(100vh - 84px);
+      margin: 10px;
+      padding: 16px;
     }
   }
 }
