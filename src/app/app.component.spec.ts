@@ -9,7 +9,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [MockProvider(Store, { select: () => of(null) } as unknown as Store)]
+      providers: [MockProvider(Store, { select: () => of(null) } as unknown as Store)],
     });
   });
 
@@ -19,4 +19,3 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 });
-
