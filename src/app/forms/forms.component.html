@@ -1,19 +1,7 @@
-<h2>Typed reactive forms</h2>
-<div class="card-container">
-  <mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Login Form</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-button type="button" color="primary" [routerLink]="['login']">Open</a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Registration Form</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-button type="button" color="primary" [routerLink]="['registration']">Open</a>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<app-cards
+  title="Typed reactive forms"
+  [cards]="[
+    { title: 'Login Form', link: ['login'] },
+    { title: 'Registration Form', link: ['registration'] },
+  ]"
+/>

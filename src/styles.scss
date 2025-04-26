@@ -63,16 +63,26 @@ body {
       elevated-container-color: #fff,
     )
   );
+  /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+  @import 'highlight.js/scss/github';
 
   &.dark-mode {
     --app-primary-color: #{mat.get-theme-color($app-dark-theme, primary)};
     --app-primary-background: #{mat.get-theme-color($app-dark-theme, primary-container)};
 
     @include mat.all-component-colors($app-dark-theme);
+    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+    @import 'highlight.js/scss/github-dark';
   }
 }
 
 .preferences-menu {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

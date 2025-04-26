@@ -8,10 +8,14 @@ export const appRoutes: Routes = [
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
   },
   {
     path: 'forms',
-    loadChildren: () => import('./forms/forms.routes').then((m) => m.formsRoutes),
+    loadChildren: () => import('./forms/forms.routes').then(m => m.formsRoutes),
+  },
+  {
+    path: 'signals',
+    loadChildren: () => import('./signals/signals.routes').then(m => m.signalsRoutes),
   },
 ];

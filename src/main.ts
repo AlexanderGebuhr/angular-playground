@@ -23,4 +23,4 @@ bootstrapApplication(AppComponent, {
     provideAppInitializer(() => inject(AppService).init()),
   ],
   // eslint-disable-next-line no-console
-}).catch((err) => console.error(err));
+}).catch(err => console.error(err));

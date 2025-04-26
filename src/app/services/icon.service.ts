@@ -23,7 +23,7 @@ export class IconService {
   ) {}
 
   register(): void {
-    this._svgs.forEach((svg) => {
+    this._svgs.forEach(svg => {
       const svgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`assets/images/${svg}.svg`);
       this.iconRegistry.addSvgIcon(svg, svgUrl);
     });
