@@ -1,79 +1,26 @@
-<!-- Highlight Card -->
-<div class="card highlight-card card-small">
-  <span>{{ title }} app is running!</span>
-</div>
+<h2>{{ title }} app is running!</h2>
 
-<!-- Topics -->
-<h2>Topics</h2>
-<p>Here are some links to show examples for several topics:</p>
+<app-cards
+  title="Topics"
+  description="Here are some links to show examples for several topics:"
+  [cards]="[
+    { title: 'Typed Reactive Forms', link: ['..', 'forms'] },
+    { title: 'Signals', link: ['..', 'signals'] },
+  ]"
+/>
 
-<div class="card-container">
-  <mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Typed Reactive Forms</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-button type="button" color="primary" [routerLink]="['..', 'forms']">Open</a>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<!-- Resources -->
-<h2>Resources</h2>
-<p>Here are some links to help you get started:</p>
-
-<div class="card-container">
-  <mat-card class="small" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Learn Angular</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-icon-button type="button" color="primary" target="_blank" href="https://angular.io/tutorial">
-        <mat-icon svgIcon="school" />
-      </a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="small" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>CLI Documentation</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-icon-button type="button" color="primary" target="_blank" href="https://angular.io/cli">
-        <mat-icon svgIcon="code" />
-      </a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="small" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Angular Material</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-icon-button type="button" color="primary" target="_blank" href="https://material.angular.io">
-        <mat-icon svgIcon="angular_material" />
-      </a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="small" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Angular Blog</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-icon-button type="button" color="primary" target="_blank" href="https://blog.angular.io/">
-        <mat-icon svgIcon="whatshot" />
-      </a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="small" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Angular DevTools</mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <a mat-icon-button type="button" color="primary" target="_blank" href="https://angular.io/devtools/">
-        <mat-icon svgIcon="saved_search" />
-      </a>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<app-cards
+  title="Resources"
+  description="Here are some links to help you get started:"
+  [cards]="[
+    { title: 'Learn Angular', href: 'https://angular.io/tutorial', icon: 'school' },
+    { title: 'Angular CLI', href: 'https://angular.io/cli', icon: 'code' },
+    { title: 'Angular Material', href: 'https://material.angular.io', icon: 'angular_material' },
+    { title: 'Angular Blog', href: 'https://blog.angular.io/', icon: 'whatshot' },
+    { title: 'Angular DevTools', href: 'https://angular.io/devtools/', icon: 'saved_search' },
+  ]"
+  [small]="true"
+/>
 
 <!-- Next Steps -->
 <h2>Next Steps</h2>

@@ -3,8 +3,8 @@ import { CardsComponent } from '../shared/cards/cards.component';
 
 @Component({
   standalone: true,
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
+  selector: 'app-signals',
+  templateUrl: './signals.component.html',
   imports: [CardsComponent],
 })
-export class FormsComponent {}
+export class SignalsComponent {}

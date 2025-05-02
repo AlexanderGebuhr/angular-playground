@@ -1,0 +1,17 @@
+<app-example label="Computed Signal" [code]="code">
+  <div class="flex-column">
+    <mat-tab-group [selectedIndex]="selectedIndex()" (selectedIndexChange)="selectedIndex.set($event)">
+      @for (tab of tabs; track tab.label) {
+        <mat-tab [label]="tab.label">{{ tab.content }}</mat-tab>
+      }
+    </mat-tab-group>
+    <div>
+      <h3>Selected Index</h3>
+      <pre>{{ selectedIndex() | json }}</pre>
+    </div>
+    <div>
+      <h3>Selected Tab</h3>
+      <pre>{{ selectedTab() | json }}</pre>
+    </div>
+  </div>
+</app-example>

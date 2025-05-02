@@ -1,0 +1,9 @@
+<h2>{{ title() }}</h2>
+@if (description(); as description) {
+  <p>{{ description }}</p>
+}
+<div class="card-container">
+  @for (card of cards(); track card.title) {
+    <app-card [card]="card" [class.small]="small()" />
+  }
+</div>

@@ -24,10 +24,10 @@ export class ThemeService {
       .select(PreferencesState.theme)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        map((theme) => theme?.mode),
+        map(theme => theme?.mode),
         distinctUntilChanged(),
       )
-      .subscribe((mode) => this.setThemeMode(mode));
+      .subscribe(mode => this.setThemeMode(mode));
   }
 
   private setThemeMode(mode: ThemeMode | null): void {

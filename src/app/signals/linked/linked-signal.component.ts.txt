@@ -1,0 +1,40 @@
+import { JsonPipe } from '@angular/common';
+import { Component, computed, linkedSignal, signal } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import { ExampleComponent } from '../../shared/example/example.component';
+import html from './linked-signal.component.html.txt';
+import ts from './linked-signal.component.ts.txt';
+
+export interface Option {
+  value: number;
+  label: string;
+}
+
+@Component({
+  standalone: true,
+  selector: 'app-linked-signal',
+  templateUrl: './linked-signal.component.html',
+  imports: [ExampleComponent, JsonPipe, MatCheckboxModule, MatSelectModule],
+})
+export class LinkedSignalComponent {
+  readonly code = { ts, html };
+  readonly options: Option[] = [
+    { value: 1, label: 'Option 1' },
+    { value: 2, label: 'Option 2' },
+    { value: 3, label: 'Option 3' },
+    { value: 4, label: 'Option 4' },
+    { value: 5, label: 'Option 5' },
+    { value: 6, label: 'Option 6' },
+  ];
+  readonly filterOptions = signal(false);
+  readonly filteredOptions = computed(() => (this.filterOptions() ? this.options.filter(o => o.value % 2 === 0) : this.options));
+  readonly selectedOption = linkedSignal<Option[], Option | null>({
+    source: this.filteredOptions,
+    computation: (options, previous) => options.find(o => o.value === previous?.value?.value) ?? null,
+  });
+
+  selectOption(value: any): void {
+    this.selectedOption.set(this.filteredOptions().find(o => o.value === value) ?? null);
+  }
+}

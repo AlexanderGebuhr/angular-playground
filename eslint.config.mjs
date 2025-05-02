@@ -148,6 +148,7 @@ export default tseslint.config(
       "@angular-eslint/template/cyclomatic-complexity": "off",
       "@angular-eslint/template/i18n": "off",
       "@angular-eslint/template/interactive-supports-focus": "off",
+      "@angular-eslint/template/no-call-expression": "off",
       "prettier/prettier": [
         "error",
         {

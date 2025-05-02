@@ -1,0 +1,28 @@
+@let data = code();
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ label() }}</mat-card-title>
+    <div class="spacer"></div>
+
+    <button mat-icon-button type="button" [disabled]="!data" (click)="showCode.set(!showCode())"><mat-icon svgIcon="code" /></button>
+  </mat-card-header>
+  <mat-card-content>
+    @if (showCode()) {
+      <mat-tab-group>
+        <mat-tab label="TS">
+          <app-highlight-code [highlight]="{ code: data!.ts, language: languages.Typescript }" />
+        </mat-tab>
+        <mat-tab label="HTML">
+          <app-highlight-code [highlight]="{ code: data!.html, language: languages.Html }" />
+        </mat-tab>
+        @if (data!.scss) {
+          <mat-tab label="SCSS">
+            <app-highlight-code [highlight]="{ code: data!.scss, language: languages.Scss }" />
+          </mat-tab>
+        }
+      </mat-tab-group>
+    } @else {
+      <ng-content />
+    }
+  </mat-card-content>
+</mat-card>
