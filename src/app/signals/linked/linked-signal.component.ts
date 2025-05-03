@@ -6,7 +6,7 @@ import { ExampleComponent } from '../../shared/example/example.component';
 import html from './linked-signal.component.html.txt';
 import ts from './linked-signal.component.ts.txt';
 
-export interface Option {
+interface Option {
   value: number;
   label: string;
 }
