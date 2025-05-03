@@ -6,10 +6,6 @@ export const signalsRoutes: Routes = [
     loadComponent: () => import('./signals.component').then(m => m.SignalsComponent),
   },
   {
-    path: 'input-output',
-    loadComponent: () => import('./input-output/input-output-signal.component').then(m => m.InputOutputSignalComponent),
-  },
-  {
     path: 'computed',
     loadComponent: () => import('./computed/computed-signal.component').then(m => m.ComputedSignalComponent),
   },
