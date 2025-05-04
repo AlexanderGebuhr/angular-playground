@@ -30,7 +30,7 @@ export class ResourceSignalComponent {
     },
     loader: ({ request }) => {
       const { filter } = request;
-      return this.httpClient.get<Option[]>('/assets/data/options.json', { params: { filter } }).pipe(
+      return this.httpClient.get<Option[]>('./assets/data/options.json', { params: { filter } }).pipe(
         take(1),
         map(options => (filter ? options.filter(o => o.value % 2 === 0) : options)),
       );
