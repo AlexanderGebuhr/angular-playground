@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +17,7 @@ export interface Code {
   selector: 'app-example',
   templateUrl: './example.component.html',
   styleUrl: './example.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatCardModule, MatIconModule, MatTabsModule, HighlightCodeComponent],
 })
 export class ExampleComponent {

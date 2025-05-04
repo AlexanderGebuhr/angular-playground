@@ -1,9 +1,10 @@
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, linkedSignal, resource, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, linkedSignal, signal } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { lastValueFrom, map, take } from 'rxjs';
+import { map, take } from 'rxjs';
 import { ExampleComponent } from '../../shared/example/example.component';
 import html from './resource-signal.component.html.txt';
 import ts from './resource-signal.component.ts.txt';
@@ -17,25 +18,28 @@ interface Option {
   standalone: true,
   selector: 'app-resource-signal',
   templateUrl: './resource-signal.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ExampleComponent, JsonPipe, MatCheckboxModule, MatSelectModule],
 })
 export class ResourceSignalComponent {
   readonly code = { ts, html };
   readonly filterOptions = signal(false);
-  readonly filteredOptionsResource = resource({
+  readonly filteredOptionsResource = rxResource({
     request: () => {
       return { filter: this.filterOptions() };
     },
-    loader: async ({ request }): Promise<Option[]> => {
+    loader: ({ request }) => {
       const { filter } = request;
-      const response$ = this.httpClient.get<Option[]>('/assets/data/options.json', { params: { filter } }).pipe(
+      return this.httpClient.get<Option[]>('./assets/data/options.json', { params: { filter } }).pipe(
         take(1),
         map(options => (filter ? options.filter(o => o.value % 2 === 0) : options)),
       );
-      return await lastValueFrom(response$);
     },
   });
-  readonly filteredOptions = this.filteredOptionsResource.value;
+  readonly filteredOptions = linkedSignal<Option[] | undefined, Option[] | undefined>({
+    source: this.filteredOptionsResource.value,
+    computation: (options, previous) => options ?? previous?.value,
+  });
   readonly selectedOption = linkedSignal<Option[] | undefined, Option | null>({
     source: this.filteredOptions,
     computation: (options, previous) => options?.find(o => o.value === previous?.value?.value) ?? null,

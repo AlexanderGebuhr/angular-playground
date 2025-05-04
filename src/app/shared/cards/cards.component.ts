@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Card } from '../card/card';
 import { CardComponent } from '../card/card.component';
 
@@ -7,6 +7,7 @@ import { CardComponent } from '../card/card.component';
   selector: 'app-cards',
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CardComponent],
 })
 export class CardsComponent {
