@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, computed, linkedSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, linkedSignal, signal } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { ExampleComponent } from '../../shared/example/example.component';
@@ -15,6 +15,7 @@ interface Option {
   standalone: true,
   selector: 'app-linked-signal',
   templateUrl: './linked-signal.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ExampleComponent, JsonPipe, MatCheckboxModule, MatSelectModule],
 })
 export class LinkedSignalComponent {

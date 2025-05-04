@@ -30,8 +30,8 @@ export default tseslint.config(
     },
     rules: {
       "@angular-eslint/use-injectable-provided-in": "off",
-      "@angular-eslint/prefer-on-push-component-change-detection": "off",
-      "@angular-eslint/prefer-signals": "off",
+      "@angular-eslint/prefer-on-push-component-change-detection": "error",
+      "@angular-eslint/prefer-signals": "error",
       "@angular-eslint/prefer-standalone": "error",
       "@typescript-eslint/consistent-type-definitions": "error",
       "@typescript-eslint/dot-notation": "off",
