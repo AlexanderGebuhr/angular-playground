@@ -1,0 +1,19 @@
+<app-example label="Options Mock Service Worker" [code]="code">
+  @if (apiStarted()) {
+    <div class="flex-column">
+      <mat-checkbox [checked]="filterOptions()" (change)="filterOptions.set($event.checked)">Filter options</mat-checkbox>
+      <mat-form-field>
+        <mat-label>Choose an option</mat-label>
+        <mat-select [value]="selectedOption()?.value" (selectionChange)="selectOption($event.value)">
+          @for (option of filteredOptions(); track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <h3>Selected Option</h3>
+        <pre>{{ selectedOption() | json }}</pre>
+      </div>
+    </div>
+  }
+</app-example>

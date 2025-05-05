@@ -18,4 +18,8 @@ export const appRoutes: Routes = [
     path: 'signals',
     loadChildren: () => import('./signals/signals.routes').then(m => m.signalsRoutes),
   },
+  {
+    path: 'msw',
+    loadChildren: () => import('./msw/msw.routes').then(m => m.mswRoutes),
+  },
 ];

@@ -65,6 +65,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "msw": "^2.7.6",
     "ng-mocks": "^14.13.4",
     "prettier": "^3.5.3",
     "prettier-eslint": "^16.4.1",
@@ -75,5 +76,10 @@
     "stylelint-prettier": "^5.0.3",
     "typescript": "~5.8.3",
     "typescript-eslint": "8.31.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "src"
+    ]
   }
 }
