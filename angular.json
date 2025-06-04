@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "apps",
   "projects": {
-    "angular-playground": {
+    "shell": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -13,9 +13,9 @@
           "strict": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "apps/shell",
+      "sourceRoot": "apps/shell/src",
+      "prefix": "shell",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -24,62 +24,46 @@
               "base": "dist/angular-playground",
               "browser": ""
             },
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "browser": "apps/shell/src/main.ts",
             "polyfills": [
-              "src/polyfills.ts"
+              "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "apps/shell/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/mockServiceWorker.js"
+              "apps/shell/src/favicon.ico",
+              "apps/shell/src/assets",
+              "apps/shell/src/mockServiceWorker.js"
             ],
             "styles": [
-              "src/reset.scss",
-              "src/styles.scss"
+              "apps/shell/src/reset.scss",
+              "apps/shell/src/styles.scss"
             ],
-            "scripts": [],
-            "sourceMap": true,
-            "optimization": false,
-            "aot": false,
-            "extractLicenses": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": true
-              },
-              "aot": true,
-              "outputHashing": "all",
-              "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "775kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -101,20 +85,20 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "main": "src/test.ts",
             "polyfills": [
-              "src/polyfills.ts"
+              "zone.js",
+              "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "tsConfig": "apps/shell/tsconfig.spec.json",
+            "karmaConfig": "apps/shell/karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/shell/src/favicon.ico",
+              "apps/shell/src/assets"
             ],
             "styles": [
-              "src/reset.scss",
-              "src/styles.scss"
+              "apps/shell/src/reset.scss",
+              "apps/shell/src/styles.scss"
             ],
             "scripts": []
           }
@@ -123,8 +107,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
+              "apps/shell/src/**/*.ts",
+              "apps/shell/src/**/*.html"
             ],
             "eslintConfig": "eslint.config.mjs"
           }
@@ -144,6 +128,30 @@
     },
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true
+    },
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }

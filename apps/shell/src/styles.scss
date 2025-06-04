@@ -1,0 +1,90 @@
+@use '@angular/material' as mat;
+
+:root {
+  --mat-sys-display-large: 500 24px/32px roboto, sans-serif;
+  --mat-sys-display-large-tracking: normal;
+  --mat-sys-display-medium: 500 20px/28px roboto, sans-serif;
+  --mat-sys-display-medium-tracking: normal;
+  --mat-sys-display-small: 500 20px/24px roboto, sans-serif;
+  --mat-sys-display-small-tracking: normal;
+  --mat-sys-body-large: 400 14px/20px roboto, sans-serif;
+  --mat-sys-body-large-tracking: normal;
+  --mat-sys-body-medium-size: 14px;
+  --mat-sys-body-medium-line-height: normal;
+  --mat-sys-body-medium-tracking: normal;
+  --mat-sys-body-small-size: 12px;
+  --mat-sys-body-small-line-height: 20px;
+  --mat-sys-body-small-tracking: 0.0333em;
+}
+
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: (
+      use-system-variables: true,
+      system-variables-prefix: mat-sys,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+$app-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: (
+      use-system-variables: true,
+      system-variables-prefix: mat-sys,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+@include mat.typography-hierarchy($app-light-theme);
+
+body {
+  --app-primary-color: #{mat.get-theme-color($app-light-theme, primary)};
+  --app-primary-background: #{mat.get-theme-color($app-light-theme, primary-container)};
+
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+  @include mat.all-component-themes($app-light-theme);
+  @include mat.card-overrides(
+    (
+      elevated-container-color: #fff,
+    )
+  );
+  /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+  @import 'highlight.js/scss/github';
+
+  &.dark-mode {
+    --app-primary-color: #{mat.get-theme-color($app-dark-theme, primary)};
+    --app-primary-background: #{mat.get-theme-color($app-dark-theme, primary-container)};
+
+    @include mat.all-component-colors($app-dark-theme);
+    /* stylelint-disable-next-line no-invalid-position-at-import-rule */
+    @import 'highlight.js/scss/github-dark';
+  }
+}
+
+.preferences-menu {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

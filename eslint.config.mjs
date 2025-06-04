@@ -13,12 +13,20 @@ export default tseslint.config(
     },
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsAll,
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
-      eslintPluginPrettierRecommended
+      eslintPluginPrettierRecommended,
+      {
+        languageOptions: {
+          parserOptions: {
+            projectService: true,
+            tsconfigRootDir: import.meta.dirname,
+          },
+        },
+      }
     ],
     processor: angular.processInlineTemplates,
     settings: {
@@ -29,6 +37,7 @@ export default tseslint.config(
       }
     },
     rules: {
+      "@angular-eslint/prefer-inject": "off",
       "@angular-eslint/use-injectable-provided-in": "off",
       "@angular-eslint/prefer-on-push-component-change-detection": "error",
       "@angular-eslint/prefer-signals": "error",
@@ -88,6 +97,12 @@ export default tseslint.config(
         "error",
         {
           "argsIgnorePattern": "^_"
+        }
+      ],
+      "@typescript-eslint/unbound-method": [
+        "error",
+        {
+          "ignoreStatic": true
         }
       ],
       "arrow-body-style": [
