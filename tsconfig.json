@@ -27,10 +27,10 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/shell/tsconfig.app.json"
+      "path": "./apps/angular-playground/tsconfig.app.json"
     },
     {
-      "path": "./apps/shell/tsconfig.spec.json"
+      "path": "./apps/angular-playground/tsconfig.spec.json"
     }
   ]
 }

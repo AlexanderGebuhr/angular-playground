@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "apps",
   "projects": {
-    "shell": {
+    "angular-playground": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -13,9 +13,9 @@
           "strict": true
         }
       },
-      "root": "apps/shell",
-      "sourceRoot": "apps/shell/src",
-      "prefix": "shell",
+      "root": "apps/angular-playground",
+      "sourceRoot": "apps/angular-playground/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -24,20 +24,20 @@
               "base": "dist/angular-playground",
               "browser": ""
             },
-            "browser": "apps/shell/src/main.ts",
+            "browser": "apps/angular-playground/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "apps/shell/tsconfig.app.json",
+            "tsConfig": "apps/angular-playground/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/shell/src/favicon.ico",
-              "apps/shell/src/assets",
-              "apps/shell/src/mockServiceWorker.js"
+              "apps/angular-playground/src/favicon.ico",
+              "apps/angular-playground/src/assets",
+              "apps/angular-playground/src/mockServiceWorker.js"
             ],
             "styles": [
-              "apps/shell/src/reset.scss",
-              "apps/shell/src/styles.scss"
+              "apps/angular-playground/src/reset.scss",
+              "apps/angular-playground/src/styles.scss"
             ],
             "scripts": []
           },
@@ -73,8 +73,12 @@
           "configurations": {
             "production": {
               "buildTarget": "angular-playground:build:production"
+            },
+            "development": {
+              "buildTarget": "angular-playground:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
@@ -89,16 +93,16 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "apps/shell/tsconfig.spec.json",
-            "karmaConfig": "apps/shell/karma.conf.js",
+            "tsConfig": "apps/angular-playground/tsconfig.spec.json",
+            "karmaConfig": "apps/angular-playground/karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/shell/src/favicon.ico",
-              "apps/shell/src/assets"
+              "apps/angular-playground/src/favicon.ico",
+              "apps/angular-playground/src/assets"
             ],
             "styles": [
-              "apps/shell/src/reset.scss",
-              "apps/shell/src/styles.scss"
+              "apps/angular-playground/src/reset.scss",
+              "apps/angular-playground/src/styles.scss"
             ],
             "scripts": []
           }
@@ -107,8 +111,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "apps/shell/src/**/*.ts",
-              "apps/shell/src/**/*.html"
+              "apps/angular-playground/src/**/*.ts",
+              "apps/angular-playground/src/**/*.html"
             ],
             "eslintConfig": "eslint.config.mjs"
           }
