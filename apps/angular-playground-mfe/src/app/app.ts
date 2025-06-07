@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected title = 'angular-playground-mfe';
+  readonly title = 'angular-playground-mfe';
 }

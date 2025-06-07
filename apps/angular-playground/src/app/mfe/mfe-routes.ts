@@ -9,4 +9,8 @@ export const mfeRoutes: Routes = [
     path: 'mfe-app',
     loadChildren: () => import('./mfe-app/mfe-app').then(m => m.mfeAppRoutes),
   },
+  {
+    path: 'mfe-app-routes',
+    loadChildren: () => import('./mfe-app-routes/mfe-app-routes').then(m => m.mfeAppRoutesRoutes),
+  },
 ];

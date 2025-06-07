@@ -5,7 +5,8 @@ module.exports = withNativeFederation({
   name: 'angular-playground-mfe',
 
   exposes: {
-    './Component': './apps/angular-playground-mfe/src/app/app.ts',
+    './AppComponent': './apps/angular-playground-mfe/src/app/app.ts',
+    './appRoutes': './apps/angular-playground-mfe/src/app/app-routes.ts',
   },
 
   shared: {

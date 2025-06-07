@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { initFederation } from '@angular-architects/native-federation';
-import { environment } from './environments/environment.development';
+import { environment } from './environments/environment';
 
 initFederation(environment.remotes)
   .catch(err => console.error(err))
