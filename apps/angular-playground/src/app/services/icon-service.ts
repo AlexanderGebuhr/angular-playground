@@ -4,23 +4,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({ providedIn: 'root' })
 export class IconService {
-  private readonly _svgs = [
-    'add',
-    'angular_material',
-    'chevron_left',
-    'chevron_right',
-    'code',
-    'home',
-    'saved_search',
-    'school',
-    'settings',
-    'whatshot',
-  ];
+  private readonly _svgs = ['add', 'angular_material', 'chevron_left', 'chevron_right', 'code', 'saved_search', 'school', 'whatshot'];
 
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-  ) {}
+  ) {
+    this.iconRegistry.setDefaultFontSetClass('material-symbols-outlined');
+  }
 
   register(): void {
     this._svgs.forEach(svg => {

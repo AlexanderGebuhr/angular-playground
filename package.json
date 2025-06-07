@@ -29,6 +29,8 @@
     "@angular/platform-server": "^20.0.2",
     "@angular/router": "^20.0.2",
     "@angular/ssr": "^20.0.1",
+    "@fontsource/material-symbols-outlined": "^5.2.11",
+    "@fontsource/roboto": "^5.2.5",
     "@ngxs/storage-plugin": "^19.0.0",
     "@ngxs/store": "^19.0.0",
     "@softarc/native-federation-node": "^2.0.10",

@@ -1,10 +1,10 @@
 <mat-toolbar class="toolbar">
   <a mat-icon-button routerLink="/home">
-    <mat-icon svgIcon="home" />
+    <mat-icon>home</mat-icon>
   </a>
   <div class="toolbar-spacer"></div>
   <button mat-icon-button type="button" [matMenuTriggerFor]="preferencesMenu">
-    <mat-icon svgIcon="settings" />
+    <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #preferencesMenu="matMenu" class="preferences-menu">
     <mat-radio-group aria-label="Select an option" [value]="themeMode$ | async" (change)="setThemeMode($event.value)">
