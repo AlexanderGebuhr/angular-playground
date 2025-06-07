@@ -13,6 +13,8 @@ module.exports = withNativeFederation({
   },
 
   skip: [
+    '@fontsource/roboto',
+    '@fontsource/material-symbols-outlined',
     'rxjs/ajax',
     'rxjs/fetch',
     'rxjs/testing',

@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use '@fontsource/roboto/latin-300';
+@use '@fontsource/roboto/latin-400';
+@use '@fontsource/roboto/latin-500';
+@use '@fontsource/roboto/latin-700';
+@use '@fontsource/material-symbols-outlined';
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  color-scheme: light dark;
+
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
