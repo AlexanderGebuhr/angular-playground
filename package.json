@@ -4,10 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:locahost:angular-playground": "ng build angular-playground --base-href=/angular-playground/",
-    "build:locahost:angular-playground-mfe": "ng build angular-playground-mfe --base-href=/angular-playground-mfe/",
-    "build:localhost": "npm run lint:all && npm run test && npm run build:locahost:angular-playground && npm run build:locahost:angular-playground-mfe",
+    "build": "ng build angular-playground && ng build angular-playground-mfe",
+    "build:localhost": "npm run lint:all && npm run test && ng build angular-playground --base-href=/angular-playground/ && ng build angular-playground-mfe --base-href=/angular-playground-mfe/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --browsers=ChromeHeadless --watch=false",
     "lint": "ng lint",
