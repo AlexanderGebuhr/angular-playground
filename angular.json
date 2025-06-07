@@ -159,7 +159,7 @@
 			},
 			"root": "apps/angular-playground-mfe",
 			"sourceRoot": "apps/angular-playground-mfe/src",
-			"prefix": "app",
+			"prefix": "mfe",
 			"architect": {
 				"build": {
 					"builder": "@angular-architects/native-federation:build",
