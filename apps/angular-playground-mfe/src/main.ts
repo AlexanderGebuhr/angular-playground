@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import { initFederation } from '@angular-architects/native-federation';
-import { environment } from './environments/environment.development';
 
-initFederation(environment.remotes)
+initFederation()
   .catch(err => console.error(err))
   .then(_ => import('./bootstrap'))
   .catch(err => console.error(err));

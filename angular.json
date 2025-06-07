@@ -1,161 +1,292 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "apps",
-  "projects": {
-    "angular-playground": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
-      "root": "apps/angular-playground",
-      "sourceRoot": "apps/angular-playground/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "outputPath": {
-              "base": "dist/angular-playground",
-              "browser": ""
-            },
-            "browser": "apps/angular-playground/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "apps/angular-playground/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/angular-playground/src/favicon.ico",
-              "apps/angular-playground/src/assets",
-              "apps/angular-playground/src/mockServiceWorker.js"
-            ],
-            "styles": [
-              "apps/angular-playground/src/reset.scss",
-              "apps/angular-playground/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "apps",
+	"projects": {
+		"angular-playground": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				},
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "apps/angular-playground",
+			"sourceRoot": "apps/angular-playground/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "angular-playground:esbuild:production"
+						},
+						"development": {
+							"target": "angular-playground:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "angular-playground:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular/build:extract-i18n",
+					"options": {
+						"buildTarget": "angular-playground:build"
+					}
+				},
+				"test": {
+					"builder": "@angular/build:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "apps/angular-playground/tsconfig.spec.json",
+						"karmaConfig": "apps/angular-playground/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"apps/angular-playground/src/favicon.ico",
+							"apps/angular-playground/src/assets"
+						],
+						"styles": [
+							"apps/angular-playground/src/reset.scss",
+							"apps/angular-playground/src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"apps/angular-playground/src/**/*.ts",
+							"apps/angular-playground/src/**/*.html"
+						],
+						"eslintConfig": "eslint.config.mjs"
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": {
+							"base": "dist/angular-playground",
+							"browser": ""
+						},
+						"browser": "apps/angular-playground/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "apps/angular-playground/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"apps/angular-playground/src/favicon.ico",
+							"apps/angular-playground/src/assets",
+							"apps/angular-playground/src/mockServiceWorker.js"
+						],
+						"styles": [
+							"apps/angular-playground/src/reset.scss",
+							"apps/angular-playground/src/styles.scss"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "775kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "775kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "replace": "apps/angular-playground/src/environments/environment.ts",
+                  "with": "apps/angular-playground/src/environments/environment.development.ts"
                 }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "options": {
-            "buildTarget": "angular-playground:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "angular-playground:build:production"
-            },
-            "development": {
-              "buildTarget": "angular-playground:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "buildTarget": "angular-playground:build"
-          }
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "apps/angular-playground/tsconfig.spec.json",
-            "karmaConfig": "apps/angular-playground/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/angular-playground/src/favicon.ico",
-              "apps/angular-playground/src/assets"
-            ],
-            "styles": [
-              "apps/angular-playground/src/reset.scss",
-              "apps/angular-playground/src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/angular-playground/src/**/*.ts",
-              "apps/angular-playground/src/**/*.html"
-            ],
-            "eslintConfig": "eslint.config.mjs"
-          }
-        }
-      }
-    }
-  },
-  "cli": {
-    "analytics": "d540c8ec-0b62-42a3-86d4-418ad9565d6b",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
-  },
-  "schematics": {
-    "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
-    },
-    "@angular-eslint/schematics:library": {
-      "setParserOptionsProject": true
-    },
-    "@schematics/angular:component": {
-      "type": "component"
-    },
-    "@schematics/angular:directive": {
-      "type": "directive"
-    },
-    "@schematics/angular:service": {
-      "type": "service"
-    },
-    "@schematics/angular:guard": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:interceptor": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:module": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:pipe": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:resolver": {
-      "typeSeparator": "."
-    }
-  }
+              ]
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular/build:dev-server",
+					"options": {
+						"buildTarget": "angular-playground:build",
+						"port": 4200
+					},
+					"configurations": {
+						"production": {
+							"buildTarget": "angular-playground:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "angular-playground:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development"
+				}
+			}
+		},
+		"angular-playground-mfe": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "apps/angular-playground-mfe",
+			"sourceRoot": "apps/angular-playground-mfe/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
+					"configurations": {
+						"production": {
+							"target": "angular-playground-mfe:esbuild:production"
+						},
+						"development": {
+							"target": "angular-playground-mfe:esbuild:development",
+							"dev": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-architects/native-federation:build",
+					"options": {
+						"target": "angular-playground-mfe:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular/build:extract-i18n"
+				},
+				"test": {
+					"builder": "@angular/build:karma",
+					"options": {
+						"polyfills": [
+							"zone.js",
+							"zone.js/testing"
+						],
+						"tsConfig": "apps/angular-playground-mfe/tsconfig.spec.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "apps/angular-playground-mfe/public"
+							}
+						],
+						"styles": [
+							"apps/angular-playground-mfe/src/styles.scss"
+						]
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"apps/angular-playground-mfe/**/*.ts",
+							"apps/angular-playground-mfe/**/*.html"
+						],
+						"eslintConfig": "apps/angular-playground-mfe/eslint.config.mjs"
+					}
+				},
+				"esbuild": {
+					"builder": "@angular-devkit/build-angular:application",
+					"options": {
+						"outputPath": {
+							"base": "dist/angular-playground-mfe",
+							"browser": ""
+						},
+						"browser": "apps/angular-playground-mfe/src/main.ts",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "apps/angular-playground-mfe/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "apps/angular-playground-mfe/public"
+							}
+						],
+						"styles": [
+							"apps/angular-playground-mfe/src/styles.scss"
+						]
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular/build:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "angular-playground-mfe:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "angular-playground-mfe:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201
+					}
+				}
+			}
+		}
+	},
+	"cli": {
+		"analytics": "d540c8ec-0b62-42a3-86d4-418ad9565d6b",
+		"schematicCollections": [
+			"@angular-eslint/schematics"
+		]
+	}
 }

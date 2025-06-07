@@ -15,11 +15,15 @@ export const appRoutes: Routes = [
     loadChildren: () => import('./forms/forms-routes').then(m => m.formsRoutes),
   },
   {
-    path: 'signals',
-    loadChildren: () => import('./signals/signals-routes').then(m => m.signalsRoutes),
+    path: 'mfe',
+    loadChildren: () => import('./mfe/mfe-routes').then(m => m.mfeRoutes),
   },
   {
     path: 'msw',
     loadChildren: () => import('./msw/msw-routes').then(m => m.mswRoutes),
+  },
+  {
+    path: 'signals',
+    loadChildren: () => import('./signals/signals-routes').then(m => m.signalsRoutes),
   },
 ];
