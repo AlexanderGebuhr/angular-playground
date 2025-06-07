@@ -1,6 +1,6 @@
 import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 import { NgxsModuleOptions } from '@ngxs/store';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.development';
 import { PreferencesState } from './state/preferences/preferences.state';
 
 export const appStates = [PreferencesState];

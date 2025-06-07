@@ -31,6 +31,12 @@
     },
     {
       "path": "./apps/angular-playground/tsconfig.spec.json"
+    },
+    {
+      "path": "./apps/angular-playground-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/angular-playground-mfe/tsconfig.spec.json"
     }
   ]
 }
