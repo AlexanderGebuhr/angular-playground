@@ -1,5 +1,7 @@
 const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config');
 
+const packageNamesToSkip = [];
+
 module.exports = withNativeFederation({
 
   shared: {
@@ -13,6 +15,15 @@ module.exports = withNativeFederation({
     'rxjs/fetch',
     'rxjs/testing',
     'rxjs/webSocket',
+    (packageName) => {
+      const skip = packageNamesToSkip.find(p => packageName.startsWith(p));
+      if (skip) {
+        console.warn(`Skip package ${packageName}`);
+      } else {
+        console.warn(`Take package ${packageName}`);
+      }
+      return skip;
+    }
     // Add further packages you don't need at runtime
   ]
 
