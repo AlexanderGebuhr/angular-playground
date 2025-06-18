@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-experimental */
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, linkedSignal, signal } from '@angular/core';
