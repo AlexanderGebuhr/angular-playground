@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-experimental */
 import { JsonPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, DOCUMENT, Inject, OnDestroy, linkedSignal, signal } from '@angular/core';
