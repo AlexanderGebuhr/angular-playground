@@ -78,7 +78,7 @@
 					}
 				},
 				"esbuild": {
-					"builder": "@angular-devkit/build-angular:application",
+					"builder": "@angular/build:application",
 					"options": {
 						"outputPath": {
 							"base": "dist/angular-playground",
@@ -218,7 +218,7 @@
 					}
 				},
 				"esbuild": {
-					"builder": "@angular-devkit/build-angular:application",
+					"builder": "@angular/build:application",
 					"options": {
 						"outputPath": {
 							"base": "dist/angular-playground-mfe",
