@@ -9,6 +9,10 @@ module.exports = withNativeFederation({
     './appRoutes': './apps/angular-playground-mfe/src/app/app-routes.ts',
   },
 
+  features: {
+    ignoreUnusedDeps: true
+  },
+
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },

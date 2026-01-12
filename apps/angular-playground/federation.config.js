@@ -4,8 +4,14 @@ const packageNamesToSkip = [];
 
 module.exports = withNativeFederation({
 
+  name: 'angular-playground-shell',
+
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+  features: {
+    ignoreUnusedDeps: true
   },
 
   skip: [
@@ -15,6 +21,7 @@ module.exports = withNativeFederation({
     'rxjs/fetch',
     'rxjs/testing',
     'rxjs/webSocket',
+    /*
     (packageName) => {
       const skip = packageNamesToSkip.find(p => packageName.startsWith(p));
       if (skip) {
@@ -24,6 +31,7 @@ module.exports = withNativeFederation({
       }
       return skip;
     }
+    */
     // Add further packages you don't need at runtime
   ]
 
