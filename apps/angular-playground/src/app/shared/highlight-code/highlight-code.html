@@ -1,2 +1,4 @@
 @let data = highlight();
-<pre><code [class]="`language-${data!.language}`" [innerHTML]="data | highlightCode"></code></pre>
+@if (data) {
+  <pre><code [class]="`language-${data.language}`" [innerHTML]="data | highlightCode"></code></pre>
+}

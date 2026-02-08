@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy, Component, computed, linkedSignal, signal } fr
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { ExampleComponent } from '../../shared/example/example';
-import html from './linked-signal.html.txt';
-import ts from './linked-signal.ts.txt';
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import html from './linked-signal.html' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import ts from './linked-signal.ts' with { loader: 'text' };
 
 interface Option {
   value: number;
@@ -18,7 +20,7 @@ interface Option {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkedSignalComponent {
-  readonly code = { ts, html };
+  readonly code = { ts: ts as string, html: html as string };
   readonly options: Option[] = [
     { value: 1, label: 'Option 1' },
     { value: 2, label: 'Option 2' },

@@ -7,9 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ExampleComponent } from '../../shared/example/example';
 import { Control } from '../shared/control';
 import { ErrorMessagePipe } from '../shared/error-message-pipe';
-import html from './login.html.txt';
-import scss from './login.scss.txt';
-import ts from './login.ts.txt';
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import html from './login.html' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import scss from './login.scss' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import ts from './login.ts' with { loader: 'text' };
 
 export interface Login {
   username: string;
@@ -57,7 +60,7 @@ export class LoginForm extends FormGroup<LoginControls> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  readonly code = { ts, html, scss };
+  readonly code = { ts: ts as string, html: html as string, scss: scss as string };
   readonly form = new LoginForm();
 
   submit(): void {

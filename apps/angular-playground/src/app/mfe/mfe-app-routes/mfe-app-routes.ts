@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet, Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { ExampleComponent } from '../../shared/example/example';
-import html from './mfe-app-routes.html.txt';
-import ts from './mfe-app-routes.ts.txt';
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import html from './mfe-app-routes.html' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import ts from './mfe-app-routes.ts' with { loader: 'text' };
 
 @Component({
   selector: 'app-mfe-app-routes',
@@ -12,7 +14,7 @@ import ts from './mfe-app-routes.ts.txt';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MfeAppRoutesComponent {
-  readonly code = { ts, html };
+  readonly code = { ts: ts as string, html: html as string };
 }
 
 export const mfeAppRoutesRoutes: Routes = [

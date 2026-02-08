@@ -7,9 +7,12 @@ import { ExampleComponent } from '../../shared/example/example';
 import { Control } from '../shared/control';
 import { ErrorMessagePipe } from '../shared/error-message-pipe';
 import { ValidatorExtensions } from '../shared/validators';
-import html from './registration.html.txt';
-import scss from './registration.scss.txt';
-import ts from './registration.ts.txt';
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import html from './registration.html' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import scss from './registration.scss' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import ts from './registration.ts' with { loader: 'text' };
 
 export interface RegistrationUser {
   firstName: string;
@@ -86,7 +89,7 @@ export class RegistrationForm extends FormGroup<RegistrationControls> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent {
-  readonly code = { ts, html, scss };
+  readonly code = { ts: ts as string, html: html as string, scss: scss as string };
   readonly form = new RegistrationForm();
 
   submit(): void {
