@@ -4,9 +4,9 @@
     <mat-card-title>{{ data.title }}</mat-card-title>
   </mat-card-header>
   <mat-card-actions>
-    @if (data.href) {
+    @if (data.href && data.icon) {
       <a mat-icon-button type="button" target="_blank" [href]="data.href">
-        <mat-icon [svgIcon]="data.icon!" />
+        <mat-icon [svgIcon]="data.icon" />
       </a>
     } @else if (data.link) {
       <a mat-button type="button" [routerLink]="data.link">{{ data.linkTitle || "Open" }}</a>

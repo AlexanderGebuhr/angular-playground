@@ -8,8 +8,10 @@ import { HttpResponse, http } from 'msw';
 import { setupWorker } from 'msw/browser';
 import options from '../../../assets/data/options.json';
 import { ExampleComponent } from '../../shared/example/example';
-import html from './options-msw.html.txt';
-import ts from './options-msw.ts.txt';
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import html from './options-msw.html' with { loader: 'text' };
+// @ts-expect-error TypeScript cannot provide types based on attributes yet
+import ts from './options-msw.ts' with { loader: 'text' };
 
 interface Option {
   value: number;
@@ -23,7 +25,7 @@ interface Option {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionsMswComponent implements OnDestroy {
-  readonly code = { ts, html };
+  readonly code = { ts: ts as string, html: html as string };
   readonly apiStarted = signal(false);
   readonly apiWorker = setupWorker(
     http.get('https://api.angular-playground.com/options', ({ request }) => {

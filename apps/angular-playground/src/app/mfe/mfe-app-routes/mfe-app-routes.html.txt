@@ -1,3 +1,0 @@
-<app-example label="Micro Frontend from App with Routes" [code]="code">
-  <router-outlet />
-</app-example>
